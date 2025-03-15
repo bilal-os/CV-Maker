@@ -18,9 +18,10 @@ import androidx.core.view.WindowInsetsCompat;
 public class HomeActivity extends AppCompatActivity {
 
     ActivityResultLauncher<Intent> getProfilePictureLauncher;
-    Uri uriProfilePicture;
-
-    Button btnProfilePicture;
+    ActivityResultLauncher<Intent> getPersonalInformationLauncher;
+    ActivityResultLauncher<Intent> getSummaryLauncher;
+    CVInformation cvInformation;
+    Button btnProfilePicture, btnPersonalInfo, btnSummary;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,12 +35,32 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         init();
+        setOnClickListeners();
+    }
 
+    private void setOnClickListeners()
+    {
         btnProfilePicture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-            Intent intent = new Intent(HomeActivity.this,ProfilePicture.class);
-            getProfilePictureLauncher.launch(intent);
+                Intent intent = new Intent(HomeActivity.this,ProfilePicture.class);
+                getProfilePictureLauncher.launch(intent);
+            }
+        });
+
+        btnPersonalInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeActivity.this,PersonalInformation.class);
+                getPersonalInformationLauncher.launch(intent);
+            }
+        });
+
+        btnSummary.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeActivity.this,SummaryActivity.class);
+                getSummaryLauncher.launch(intent);
             }
         });
 
@@ -47,8 +68,10 @@ public class HomeActivity extends AppCompatActivity {
 
     private void init()
     {
-
+        cvInformation = new CVInformation();
         btnProfilePicture=findViewById(R.id.btnProfilePicture);
+        btnPersonalInfo=findViewById(R.id.btnPersonalDetails);
+        btnSummary = findViewById(R.id.btnSummary);
 
         getProfilePictureLauncher=registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
                 (result)->
@@ -61,11 +84,47 @@ public class HomeActivity extends AppCompatActivity {
                     else if(result.getResultCode()==RESULT_OK)
                     {
                         Intent profilePictureIntent = result.getData();
-                        uriProfilePicture = Uri.parse( profilePictureIntent.getStringExtra("ImageURI"));
+                        cvInformation.setUriProfilePicture(Uri.parse( profilePictureIntent.getStringExtra("ImageURI")));
                         Toast.makeText(HomeActivity.this,"Profile Image selected!",Toast.LENGTH_LONG).show();
                     }
                 }
         );
-    }
 
+        getPersonalInformationLauncher=registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+                (result)->
+                {
+                    if(result.getResultCode() == RESULT_CANCELED || result.getData()==null)
+                    {
+                        Toast.makeText(HomeActivity.this,"No Personal Data Inserted",Toast.LENGTH_LONG).show();
+                    }
+
+                    else if(result.getResultCode()==RESULT_OK)
+                    {
+                        Intent personalInformationIntent=result.getData();
+                        cvInformation.setFullName(personalInformationIntent.getStringExtra("FullName"));
+                        cvInformation.setDateOfBirth(personalInformationIntent.getStringExtra("DateOfBirth"));
+                        cvInformation.setEmail(personalInformationIntent.getStringExtra("Email"));
+                        cvInformation.setPhone(personalInformationIntent.getStringExtra("Phone"));
+                        cvInformation.setAddress(personalInformationIntent.getStringExtra("Address"));
+                        Toast.makeText(HomeActivity.this,"Personal Information Collected",Toast.LENGTH_LONG).show();
+                    }
+                });
+
+        getSummaryLauncher= registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+                (result)->
+                {
+                    if(result.getResultCode() == RESULT_CANCELED || result.getData()==null)
+                    {
+                        Toast.makeText(HomeActivity.this,"No Summary Inserted",Toast.LENGTH_LONG).show();
+                    }
+
+                    else if(result.getResultCode()==RESULT_OK)
+                    {
+                        Intent summaryIntent=result.getData();
+                        cvInformation.setSummary(summaryIntent.getStringExtra("Summary"));
+                        Toast.makeText(HomeActivity.this,"Summary Collected",Toast.LENGTH_LONG).show();
+                    }
+                });
+
+    }
 }
