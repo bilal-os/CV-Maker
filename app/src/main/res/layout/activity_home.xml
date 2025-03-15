@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomeActivity"
+    android:orientation="vertical"
+    android:background="@color/light_gray"
+    android:gravity="center"
+    >
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnProfile"
+        android:background="@drawable/button_rounded"
+        android:layout_margin="16dp"
+        android:text="@string/upload_profile_picture"
+        android:textColor="@android:color/white"
+        android:padding="12dp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnPersonalDetails"
+        android:background="@drawable/button_rounded"
+        android:layout_margin="16dp"
+        android:text="Personal Details"
+        android:textColor="@android:color/white"
+        android:padding="12dp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnSummary"
+        android:background="@drawable/button_rounded"
+        android:layout_margin="16dp"
+        android:text="Summary"
+        android:textColor="@android:color/white"
+        android:padding="12dp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnEducation"
+        android:background="@drawable/button_rounded"
+        android:layout_margin="16dp"
+        android:text="Education"
+        android:textColor="@android:color/white"
+        android:padding="12dp" />
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnExperience"
+        android:background="@drawable/button_rounded"
+        android:layout_margin="16dp"
+        android:text="Experience"
+        android:textColor="@android:color/white"
+        android:padding="12dp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnCertifications"
+        android:background="@drawable/button_rounded"
+        android:layout_margin="16dp"
+        android:text="Certifications"
+        android:textColor="@android:color/white"
+        android:padding="12dp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnReferences"
+        android:background="@drawable/button_rounded"
+        android:layout_margin="16dp"
+        android:text="References"
+        android:textColor="@android:color/white"
+        android:padding="12dp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnPreview"
+        android:background="@drawable/button_rounded"
+        android:layout_margin="16dp"
+        android:text="Preview CV"
+        android:textColor="@android:color/white"
+        android:padding="12dp" />
+
+</LinearLayout>

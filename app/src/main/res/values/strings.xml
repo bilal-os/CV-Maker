@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">CV Maker</string>
     <string name="cv_maker_logo">cv_maker_logo</string>
+    <string name="upload_profile_picture">Profile Picture</string>
 </resources>
