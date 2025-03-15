@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/light_gray"
+
+    tools:context=".ProfilePicture">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_weight="2"
+        >
+        <RelativeLayout
+            android:layout_width="300dp"
+            android:layout_height="300dp">
+            <ImageView
+                android:id="@+id/ivProfilePicture"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/person"
+                android:scaleType="centerCrop"
+                android:contentDescription="@string/set_profile_picture"
+                android:background="@drawable/circle_shape" />
+
+            <ImageButton
+                android:id="@+id/ibUploadImage"
+                android:layout_width="58dp"
+                android:layout_height="58dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/camera_shutter"
+                android:contentDescription="@string/upload_image"
+                android:layout_alignBottom="@id/ivProfilePicture"
+                android:layout_alignEnd="@id/ivProfilePicture"
+                 />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:orientation="vertical"
+        android:gravity="center"
+        >
+        <Button
+            android:id="@+id/btnSubmitProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Submit"
+            android:background="@drawable/button_rounded"
+            android:textColor="@android:color/white"
+            android:layout_marginRight="80dp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginBottom="30dp"
+            android:padding="12dp" />
+
+        <Button
+            android:id="@+id/btnCancelProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cacnel"
+            android:background="@drawable/button_rounded"
+            android:textColor="@android:color/white"
+            android:layout_marginRight="80dp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginBottom="60dp"
+            android:padding="12dp" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
