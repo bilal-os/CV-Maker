@@ -4,4 +4,6 @@
     <string name="upload_profile_picture">Profile Picture</string>
     <string name="set_profile_picture">Upload Profile Picture</string>
     <string name="upload_image">Image Button</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

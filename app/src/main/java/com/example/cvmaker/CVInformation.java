@@ -2,6 +2,9 @@ package com.example.cvmaker;
 
 import android.net.Uri;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CVInformation {
     private Uri uriProfilePicture = null;
     private String fullName;
@@ -11,6 +14,36 @@ public class CVInformation {
     private String address;
 
     private String summary;
+
+    private ArrayList<Education> educations;
+
+    private ArrayList<Experience> experiences;
+
+    public CVInformation()
+    {
+        educations = new ArrayList<>();
+        experiences = new ArrayList<>();
+    }
+
+    public ArrayList<Experience> getExperiences()
+    {
+        return experiences;
+    }
+
+    public void setExperiences(ArrayList<Experience> experiences)
+    {
+        this.experiences=experiences;
+    }
+
+    public ArrayList<Education> getEducations()
+    {
+        return educations;
+    }
+
+    public void setEducations(ArrayList<Education> educations)
+    {
+        this.educations=educations;
+    }
 
     public String getSummary()
     {

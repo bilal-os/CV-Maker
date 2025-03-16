@@ -15,13 +15,19 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.ArrayList;
+
 public class HomeActivity extends AppCompatActivity {
 
     ActivityResultLauncher<Intent> getProfilePictureLauncher;
     ActivityResultLauncher<Intent> getPersonalInformationLauncher;
     ActivityResultLauncher<Intent> getSummaryLauncher;
+
+    ActivityResultLauncher<Intent> getEducationLauncher;
+
+    ActivityResultLauncher<Intent> getExperienceLauncher;
     CVInformation cvInformation;
-    Button btnProfilePicture, btnPersonalInfo, btnSummary;
+    Button btnProfilePicture, btnPersonalInfo, btnSummary, btnEducation, btnExperience;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +70,24 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        btnEducation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeActivity.this, EducationActivity.class);
+                intent.putExtra("educations", cvInformation.getEducations());
+                getEducationLauncher.launch(intent);
+            }
+        });
+
+        btnExperience.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeActivity.this, ExperienceActivity.class);
+                intent.putExtra("experiences",cvInformation.getExperiences());
+                getExperienceLauncher.launch(intent);
+            }
+        });
+
     }
 
     private void init()
@@ -72,6 +96,8 @@ public class HomeActivity extends AppCompatActivity {
         btnProfilePicture=findViewById(R.id.btnProfilePicture);
         btnPersonalInfo=findViewById(R.id.btnPersonalDetails);
         btnSummary = findViewById(R.id.btnSummary);
+        btnEducation = findViewById(R.id.btnEducation);
+        btnExperience=findViewById(R.id.btnExperience);
 
         getProfilePictureLauncher=registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
                 (result)->
@@ -123,6 +149,45 @@ public class HomeActivity extends AppCompatActivity {
                         Intent summaryIntent=result.getData();
                         cvInformation.setSummary(summaryIntent.getStringExtra("Summary"));
                         Toast.makeText(HomeActivity.this,"Summary Collected",Toast.LENGTH_LONG).show();
+                    }
+                });
+
+        getEducationLauncher=registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+                (result)->
+                {
+                    if(result.getResultCode() == RESULT_CANCELED || result.getData()==null)
+                    {
+                        Toast.makeText(HomeActivity.this,"No Education Inserted",Toast.LENGTH_LONG).show();
+                    }
+
+                    else if(result.getResultCode()==RESULT_OK) {
+                        // Retrieve the updated ArrayList<Education> from the result
+                        ArrayList<Education> updatedEducations =
+                                (ArrayList<Education>) result.getData().getSerializableExtra("educations");
+                        if (updatedEducations != null) {
+                            cvInformation.setEducations(updatedEducations);
+                            Toast.makeText(HomeActivity.this, "Education Collected", Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+                });
+
+        getExperienceLauncher=registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+                (result)->
+                {
+                    if(result.getResultCode() == RESULT_CANCELED || result.getData()==null)
+                    {
+                        Toast.makeText(HomeActivity.this,"No Summary Inserted",Toast.LENGTH_LONG).show();
+                    }
+
+                    else if(result.getResultCode()==RESULT_OK) {
+
+                        ArrayList<Experience> updatedExperiences = (ArrayList<Experience>) result.getData().getSerializableExtra("experiences");
+                        if(updatedExperiences!=null)
+                        {
+                            cvInformation.setExperiences(updatedExperiences);
+                            Toast.makeText(HomeActivity.this,"Experience Collected",Toast.LENGTH_LONG).show();
+                    }
                     }
                 });
 
