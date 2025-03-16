@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:id="@+id/main"
+    tools:context=".CertificationsActivity"
+    android:padding="16dp">
+
+
+    <ListView
+        android:id="@+id/lv_certification_list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:divider="@android:color/darker_gray"
+        android:dividerHeight="1dp"
+        android:scrollbars="vertical" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="end"
+        android:paddingTop="8dp">
+
+
+        <Button
+            android:id="@+id/btn_add_certification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Certification"
+            android:layout_marginEnd="8dp"
+            android:backgroundTint="@color/black"
+            android:textColor="@android:color/white" />
+
+
+        <Button
+            android:id="@+id/btn_confirm_certification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Confirm"
+            android:backgroundTint="@android:color/holo_green_dark"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+</LinearLayout>

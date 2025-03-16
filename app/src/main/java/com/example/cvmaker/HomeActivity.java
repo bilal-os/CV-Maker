@@ -26,8 +26,10 @@ public class HomeActivity extends AppCompatActivity {
     ActivityResultLauncher<Intent> getEducationLauncher;
 
     ActivityResultLauncher<Intent> getExperienceLauncher;
+
+    ActivityResultLauncher<Intent> getCertificationLauncher;
     CVInformation cvInformation;
-    Button btnProfilePicture, btnPersonalInfo, btnSummary, btnEducation, btnExperience;
+    Button btnProfilePicture, btnPersonalInfo, btnSummary, btnEducation, btnExperience, btnCertification, btnPreview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +90,26 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        btnCertification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeActivity.this,CertificationsActivity.class);
+                intent.putExtra("certifications",cvInformation.getCertifications());
+                getCertificationLauncher.launch(intent);
+            }
+        });
+
+        btnPreview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeActivity.this,PreviewCvActivity.class);
+                intent.putExtra("cv_information",cvInformation);
+                startActivity(intent);
+            }
+        });
+
+
+
     }
 
     private void init()
@@ -98,6 +120,8 @@ public class HomeActivity extends AppCompatActivity {
         btnSummary = findViewById(R.id.btnSummary);
         btnEducation = findViewById(R.id.btnEducation);
         btnExperience=findViewById(R.id.btnExperience);
+        btnCertification=findViewById(R.id.btnCertifications);
+        btnPreview=findViewById(R.id.btnPreview);
 
         getProfilePictureLauncher=registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
                 (result)->
@@ -177,7 +201,7 @@ public class HomeActivity extends AppCompatActivity {
                 {
                     if(result.getResultCode() == RESULT_CANCELED || result.getData()==null)
                     {
-                        Toast.makeText(HomeActivity.this,"No Summary Inserted",Toast.LENGTH_LONG).show();
+                        Toast.makeText(HomeActivity.this,"No Experience Inserted",Toast.LENGTH_LONG).show();
                     }
 
                     else if(result.getResultCode()==RESULT_OK) {
@@ -188,6 +212,27 @@ public class HomeActivity extends AppCompatActivity {
                             cvInformation.setExperiences(updatedExperiences);
                             Toast.makeText(HomeActivity.this,"Experience Collected",Toast.LENGTH_LONG).show();
                     }
+                    }
+                });
+
+        getCertificationLauncher=registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+                (result) ->
+                {
+                    if(result.getResultCode() == RESULT_CANCELED || result.getData()==null)
+                    {
+                        Toast.makeText(HomeActivity.this,"No Experience Inserted",Toast.LENGTH_LONG).show();
+                    }
+
+                    else if(result.getResultCode()==RESULT_OK) {
+
+                    ArrayList<Certification> certifications = (ArrayList<Certification>) result.getData().getSerializableExtra("certifications");
+
+                    if(certifications!=null)
+                    {
+                        cvInformation.setCertifications(certifications);
+                        Toast.makeText(HomeActivity.this,"Certifications Collected",Toast.LENGTH_LONG).show();
+                    }
+
                     }
                 });
 

@@ -2,10 +2,11 @@ package com.example.cvmaker;
 
 import android.net.Uri;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CVInformation {
+public class CVInformation implements Serializable {
     private Uri uriProfilePicture = null;
     private String fullName;
     private String dateOfBirth;
@@ -19,10 +20,23 @@ public class CVInformation {
 
     private ArrayList<Experience> experiences;
 
+    private ArrayList<Certification> certifications;
+
     public CVInformation()
     {
         educations = new ArrayList<>();
         experiences = new ArrayList<>();
+        certifications = new ArrayList<>();
+    }
+
+    public ArrayList<Certification> getCertifications()
+    {
+        return certifications;
+    }
+
+    public void setCertifications(ArrayList<Certification> certifications)
+    {
+        this.certifications=certifications;
     }
 
     public ArrayList<Experience> getExperiences()

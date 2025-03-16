@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/light_gray"
+    android:padding="16dp"
+    android:id="@+id/main"
+    tools:context=".addCertificationActivity">
+
+    <!-- Certification Name -->
+    <EditText
+        android:id="@+id/et_certification_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:hint="Certification Name" />
+
+    <!-- Issuing Organization -->
+    <EditText
+        android:id="@+id/et_issuing_organization"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:hint="Issuing Organization" />
+
+    <!-- Issue Date -->
+    <EditText
+        android:id="@+id/et_issue_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:hint="Issue Date (YYYY-MM-DD)" />
+
+    <!-- Expiry Date -->
+    <EditText
+        android:id="@+id/et_expiry_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:hint="Expiry Date (Optional)" />
+
+    <!-- Save Button -->
+    <Button
+        android:id="@+id/btn_save_certification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:backgroundTint="@color/black"
+        android:text="Save" />
+
+    <!-- Cancel Button -->
+    <Button
+        android:id="@+id/btn_cancel_certification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:backgroundTint="@android:color/holo_red_dark"
+        android:text="Cancel" />
+</LinearLayout>
